@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class ContragentType {
 
     @Id
-    @GeneratedValue//(strategy = GenerationType.TABLE)
+    @GeneratedValue
     @Column(name = "CID")
     private String id;
 

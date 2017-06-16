@@ -13,16 +13,18 @@ public class App
 {
     public static void main( String[] args )
     {   System.out.println( "Hello World!1" );
-        ContragentType contragenttype = new ContragentType("1C","bingobongo", 2);
+        ContragentType contragenttype = new ContragentType("3S","hghghghgghg", 4);
+        Category category = new Category("OLE_ole");
         System.out.println( "Hello World!2" );
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("TMP_CONTRAGENTTYPE");
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
-        em.persist(contragenttype);
-        tx.commit();
-        em.close();
-        emf.close();
-        System.out.println( "Hello World!4" );
+        EntityManagerFactory emf1 = Persistence.createEntityManagerFactory("TEST");
+        EntityManager em1 = emf1.createEntityManager();
+        EntityTransaction tx1 = em1.getTransaction();
+        tx1.begin();
+        em1.persist(contragenttype);
+        em1.persist(category);
+        tx1.commit();
+        em1.close();
+        emf1.close();
+
     }
 }
