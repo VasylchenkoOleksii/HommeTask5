@@ -6,10 +6,10 @@ import javax.persistence.*;
  * Created by vasylchenko on 21.06.2017.
  */
 @Entity
-@Table( name = "TMP_ADDRESS")
+@Table(name = "TMP_ADDRESS")
 public class Address {
     @Id
-    @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "address_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_sequence")
     @SequenceGenerator(name = "address_sequence",
             sequenceName = "sequence_addr",
             initialValue = 1,
@@ -24,10 +24,12 @@ public class Address {
     private String houseno;
     private String flat;
 
+    @OneToOne(mappedBy = "address")
+    private Contragent contragent;
+
 
     public Address() {
     }
-
 
 
     public int getId() {
@@ -94,5 +96,11 @@ public class Address {
         this.flat = flat;
     }
 
+    public Contragent getContragent() {
+        return contragent;
+    }
 
+    public void setContragent(Contragent contragent) {
+        this.contragent = contragent;
+    }
 }

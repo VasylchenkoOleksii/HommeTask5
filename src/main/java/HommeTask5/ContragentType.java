@@ -18,9 +18,12 @@ public class ContragentType {
 
     private int officialtype = 0;
 
+    @OneToOne(mappedBy = "contragentType")
+    private Contragent contragent;
+
     public ContragentType(String id,
                           String name,
-                          int officialtype){
+                          int officialtype) {
         this.id = id;
         this.name = name;
         this.officialtype = officialtype;
@@ -52,5 +55,13 @@ public class ContragentType {
 
     public void setOfficialtype(int officialtype) {
         this.officialtype = officialtype;
+    }
+
+    public Contragent getContragent() {
+        return contragent;
+    }
+
+    public void setContragent(Contragent contragent) {
+        this.contragent = contragent;
     }
 }
