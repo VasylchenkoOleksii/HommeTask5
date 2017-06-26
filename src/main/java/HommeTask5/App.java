@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!1");
+        /*System.out.println("Hello World!1");*/
         /*Task1*/
         ContragentType contragenttype = new ContragentType("19", "hgdfhghghgghg", 4);
         Category category = new Category("OLE ole", new Date());
@@ -26,7 +26,7 @@ public class App {
         address.setHouseno("18");
         address.setFlat("145");
         address.setPostcode("61058");
-        System.out.println("Hello World!2");
+        /*System.out.println("Hello World!2");*/
 
         /*Task3*/
         ContragentId contragentId = new ContragentId(2, 852258);
