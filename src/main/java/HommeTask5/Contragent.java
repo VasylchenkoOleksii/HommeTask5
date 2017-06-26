@@ -22,9 +22,8 @@ public class Contragent {
     private String name;
     private String identycode;
 
-    @OneToOne
-    @JoinColumn(name = "ADRESSID")
-    private Address address;
+    @OneToMany(targetEntity = Address.class, mappedBy = "contragent")
+    private List<Address> addressList;
 
     @OneToOne
     @JoinColumn(name = "CATEGORYID")
@@ -76,12 +75,12 @@ public class Contragent {
         this.identycode = identycode;
     }
 
-    public Address getAddress() {
-        return address;
+    public List<Address> getAddressList() {
+        return addressList;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddressList(List<Address> addressList) {
+        this.addressList = addressList;
     }
 
     public Category getCategory() {
@@ -116,12 +115,11 @@ public class Contragent {
         this.groupList = groupList;
     }
 
-    public Contragent(Integer id, Integer siteid, String name, String identycode, Address address, Category category, ContragentType contragentType) {
+    public Contragent(Integer id, Integer siteid, String name, String identycode, Category category, ContragentType contragentType) {
         this.id = id;
         this.siteid = siteid;
         this.name = name;
         this.identycode = identycode;
-        this.address = address;
         this.category = category;
         this.contragentType = contragentType;
     }

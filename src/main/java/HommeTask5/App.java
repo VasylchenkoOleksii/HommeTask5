@@ -31,14 +31,17 @@ public class App {
         /*Task3*/
         ContragentId contragentId = new ContragentId(2, 852258);
 
-        Contragent contragent = new Contragent (contragentId.getId(),contragentId.getSiteid(),"deal deal","7656836883", address, category, contragenttype);
+        Contragent contragent = new Contragent (contragentId.getId(),contragentId.getSiteid(),"deal deal","7656836883", category, contragenttype);
 
         Account account = new Account(contragent, new Date(), "2400587456", new Date(), new BigDecimal("156.15"));
 
-        /*Task4*/
+               /*Task4*/
         ContragentGroup contragentGroup = new ContragentGroup("Valuable");
         ContragentGroup contragentGroup1 = new ContragentGroup ("Gariga");
         ContragentGroup contragentGroup2 = new ContragentGroup ( "Abebka");
+
+        /*Task5*/
+        Address address2 = new Address("USA", "NY", "NHL", "SnowMan", "18", "145", "61058", contragent );
 
 
         EntityManagerFactory emf1 = Persistence.createEntityManagerFactory("TEST");
@@ -48,6 +51,7 @@ public class App {
         em1.persist(contragenttype);
         em1.persist(category);
         em1.persist(address);
+        em1.persist(address2);
         em1.persist(contragent);
         em1.persist(account);
         em1.persist(contragentGroup);

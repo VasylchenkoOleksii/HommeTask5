@@ -24,7 +24,12 @@ public class Address {
     private String houseno;
     private String flat;
 
-    @OneToOne(mappedBy = "address")
+    @ManyToOne
+    @JoinColumns(
+            {@JoinColumn(name = "CONTRAGENTID", referencedColumnName = "ID"),
+                    @JoinColumn(name = "SITEID", referencedColumnName = "SITEID")
+            }
+    )
     private Contragent contragent;
 
 
@@ -101,6 +106,17 @@ public class Address {
     }
 
     public void setContragent(Contragent contragent) {
+        this.contragent = contragent;
+    }
+
+    public Address(String country, String postcode, String district, String city, String street, String houseno, String flat, Contragent contragent) {
+        this.country = country;
+        this.postcode = postcode;
+        this.district = district;
+        this.city = city;
+        this.street = street;
+        this.houseno = houseno;
+        this.flat = flat;
         this.contragent = contragent;
     }
 }
