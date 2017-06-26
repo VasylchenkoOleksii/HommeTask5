@@ -9,7 +9,16 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "TMP_ACCOUNT")
+@Access(AccessType.PROPERTY)
 public class Account {
+
+    private Integer id;
+    private Contragent contragent;
+    private Date timeChange;
+    private String accountno;
+    private Date dateopen;
+    private BigDecimal summa;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_sequence")
     @SequenceGenerator(name = "account_sequence",
@@ -17,28 +26,6 @@ public class Account {
             initialValue = 1,
             allocationSize = 1)
     @Column(name = "ACCOUNTID")
-    private Integer id;
-
-    @ManyToOne
-    @JoinColumns(
-            {@JoinColumn(name = "CONTRAGENTID", referencedColumnName = "ID"),
-                    @JoinColumn(name = "SITEID", referencedColumnName = "SITEID")
-            }
-    )
-    private Contragent contragent;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "SYNCTIMESTAMP", nullable = false)
-    private Date timeChange;
-
-    @Column(nullable = false)
-    private String accountno;
-
-    private Date dateopen;
-
-    @Column(name = "SUMMANOW", nullable = false)
-    private BigDecimal summa;
-
     public Integer getId() {
         return id;
     }
@@ -47,6 +34,12 @@ public class Account {
         this.id = id;
     }
 
+    @ManyToOne
+    @JoinColumns(
+            {@JoinColumn(name = "CONTRAGENTID", referencedColumnName = "ID"),
+                    @JoinColumn(name = "SITEID", referencedColumnName = "SITEID")
+            }
+    )
     public Contragent getContragent() {
         return contragent;
     }
@@ -55,6 +48,8 @@ public class Account {
         this.contragent = contragent;
     }
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "SYNCTIMESTAMP", nullable = false)
     public Date getTimeChange() {
         return timeChange;
     }
@@ -63,6 +58,7 @@ public class Account {
         this.timeChange = timeChange;
     }
 
+    @Column(nullable = false)
     public String getAccountno() {
         return accountno;
     }
@@ -71,6 +67,7 @@ public class Account {
         this.accountno = accountno;
     }
 
+    @Column(name = "DATE_OPEN")
     public Date getDateopen() {
         return dateopen;
     }
@@ -79,6 +76,7 @@ public class Account {
         this.dateopen = dateopen;
     }
 
+    @Column(name = "SUMMANOW", nullable = false)
     public BigDecimal getSumma() {
         return summa;
     }
