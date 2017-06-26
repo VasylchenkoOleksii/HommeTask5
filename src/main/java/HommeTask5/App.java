@@ -13,9 +13,11 @@ import java.util.Date;
 public class App {
     public static void main(String[] args) {
         System.out.println("Hello World!1");
+        /*Task1*/
         ContragentType contragenttype = new ContragentType("19", "hgdfhghghgghg", 4);
         Category category = new Category("OLE ole", new Date());
 
+        /*Task2*/
         Address address = new Address();
         address.setCountry("USA");
         address.setCity("Chicago");
@@ -26,11 +28,17 @@ public class App {
         address.setPostcode("61058");
         System.out.println("Hello World!2");
 
-        ContragentId contragentId = new ContragentId(20, 852258);
+        /*Task3*/
+        ContragentId contragentId = new ContragentId(2, 852258);
 
         Contragent contragent = new Contragent (contragentId.getId(),contragentId.getSiteid(),"deal deal","7656836883", address, category, contragenttype);
 
         Account account = new Account(contragent, new Date(), "2400587456", new Date(), new BigDecimal("156.15"));
+
+        /*Task4*/
+        ContragentGroup contragentGroup = new ContragentGroup("Valuable");
+        ContragentGroup contragentGroup1 = new ContragentGroup ("Gariga");
+        ContragentGroup contragentGroup2 = new ContragentGroup ( "Abebka");
 
 
         EntityManagerFactory emf1 = Persistence.createEntityManagerFactory("TEST");
@@ -42,6 +50,9 @@ public class App {
         em1.persist(address);
         em1.persist(contragent);
         em1.persist(account);
+        em1.persist(contragentGroup);
+        em1.persist(contragentGroup1);
+        em1.persist(contragentGroup2);
         tx1.commit();
         em1.close();
         emf1.close();

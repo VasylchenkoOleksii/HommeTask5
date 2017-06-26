@@ -37,6 +37,9 @@ public class Contragent {
     @OneToMany(targetEntity = Account.class, mappedBy = "contragent")
     private List<Account> accountList;
 
+    @ManyToMany(mappedBy = "contragentList")
+    private List<ContragentGroup> groupList;
+
 
     public Contragent() {
     }
@@ -105,7 +108,15 @@ public class Contragent {
         this.accountList = accountList;
     }
 
-    public Contragent(Integer id,Integer siteid, String name, String identycode, Address address, Category category, ContragentType contragentType) {
+    public List<ContragentGroup> getGroupList() {
+        return groupList;
+    }
+
+    public void setGroupList(List<ContragentGroup> groupList) {
+        this.groupList = groupList;
+    }
+
+    public Contragent(Integer id, Integer siteid, String name, String identycode, Address address, Category category, ContragentType contragentType) {
         this.id = id;
         this.siteid = siteid;
         this.name = name;
