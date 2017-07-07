@@ -9,56 +9,32 @@ import java.util.List;
  */
 @Entity
 @Table(name = "TMP_CONTRAGENT")
-@IdClass(ContragentId.class)
+@Access(AccessType.PROPERTY)
 public class Contragent {
 
-    @Id
-    private Integer id;
-    @Id
-    private Integer siteid;
 
-    /*@NotNull*/
-    @Column(nullable = false)
+    private ContragentId contragentPK;
     private String name;
     private String identycode;
-
-    @OneToMany(targetEntity = Address.class, mappedBy = "contragent")
     private List<Address> addressList;
-
-    @OneToOne
-    @JoinColumn(name = "CATEGORYID")
     private Category category;
-
-    @OneToOne
-    @JoinColumn(name = "CONTRAGENTTYPEID")
     private ContragentType contragentType;
-
-    @OneToMany(targetEntity = Account.class, mappedBy = "contragent")
     private List<Account> accountList;
-
-    @ManyToMany(mappedBy = "contragentList")
     private List<ContragentGroup> groupList;
-
 
     public Contragent() {
     }
 
-    public Integer getId() {
-        return id;
+    @EmbeddedId
+    public ContragentId getContragentPK() {
+        return contragentPK;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setContragentPK(ContragentId contragentPK) {
+        this.contragentPK = contragentPK;
     }
 
-    public Integer getSiteid() {
-        return siteid;
-    }
-
-    public void setSiteid(Integer siteid) {
-        this.siteid = siteid;
-    }
-
+    @Column(nullable = false)
     public String getName() {
         return name;
     }
@@ -75,14 +51,24 @@ public class Contragent {
         this.identycode = identycode;
     }
 
+    /*@OneToMany(targetEntity = Address.class, mappedBy = "contragent")*/
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "TMP_CR_ADRESS",
+            joinColumns = {
+            @JoinColumn(name = "CONTRAGENTID", referencedColumnName = "ID"),
+            @JoinColumn(name = "SITEID", referencedColumnName = "SITEID")},
+            inverseJoinColumns = @JoinColumn(name = "ADDRESSID"))
     public List<Address> getAddressList() {
         return addressList;
     }
+
 
     public void setAddressList(List<Address> addressList) {
         this.addressList = addressList;
     }
 
+    @OneToOne
+    @JoinColumn(name = "CATEGORYID")
     public Category getCategory() {
         return category;
     }
@@ -91,6 +77,8 @@ public class Contragent {
         this.category = category;
     }
 
+    @OneToOne
+    @JoinColumn(name = "CONTRAGENTTYPEID")
     public ContragentType getContragentType() {
         return contragentType;
     }
@@ -99,6 +87,7 @@ public class Contragent {
         this.contragentType = contragentType;
     }
 
+    @OneToMany(targetEntity = Account.class, mappedBy = "contragent")
     public List<Account> getAccountList() {
         return accountList;
     }
@@ -107,6 +96,7 @@ public class Contragent {
         this.accountList = accountList;
     }
 
+    @ManyToMany(mappedBy = "contragentList")
     public List<ContragentGroup> getGroupList() {
         return groupList;
     }
@@ -115,12 +105,11 @@ public class Contragent {
         this.groupList = groupList;
     }
 
-    public Contragent(Integer id, Integer siteid, String name, String identycode, Category category, ContragentType contragentType) {
-        this.id = id;
-        this.siteid = siteid;
+    public Contragent(ContragentId contragentPK, String name, String identycode, Category category, ContragentType contragentType) {
+        this.contragentPK = contragentPK;
         this.name = name;
         this.identycode = identycode;
         this.category = category;
         this.contragentType = contragentType;
-    }
+            }
 }
