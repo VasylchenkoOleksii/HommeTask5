@@ -4,9 +4,6 @@ import javax.persistence.*;
 import java.util.List;
 
 
-/**
- * Created by vasylchenko on 23.06.2017.
- */
 @Entity
 @Table(name = "TMP_CONTRAGENT")
 @Access(AccessType.PROPERTY)

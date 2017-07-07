@@ -3,7 +3,7 @@ package HommeTask5;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
+/**/
 /**
  * Created by vasylchenko on 23.06.2017.
  */
