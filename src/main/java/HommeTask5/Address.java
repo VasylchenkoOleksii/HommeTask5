@@ -24,14 +24,6 @@ public class Address {
     private String houseno;
     private String flat;
 
-    @ManyToOne
-    @JoinColumns(
-            {@JoinColumn(name = "CONTRAGENTID", referencedColumnName = "ID"),
-                    @JoinColumn(name = "SITEID", referencedColumnName = "SITEID")
-            }
-    )
-    private Contragent contragent;
-
 
     public Address() {
     }
@@ -101,15 +93,9 @@ public class Address {
         this.flat = flat;
     }
 
-    public Contragent getContragent() {
-        return contragent;
-    }
 
-    public void setContragent(Contragent contragent) {
-        this.contragent = contragent;
-    }
-
-    public Address(String country, String postcode, String district, String city, String street, String houseno, String flat, Contragent contragent) {
+    public Address(String country, String postcode, String district, String city, String street, String houseno, String flat,
+                   Contragent contragent) {
         this.country = country;
         this.postcode = postcode;
         this.district = district;
@@ -117,6 +103,9 @@ public class Address {
         this.street = street;
         this.houseno = houseno;
         this.flat = flat;
-        this.contragent = contragent;
     }
 }
+    Contact GitHub
+    API Training
+    Shop Blog About
+        © 2017GitHub,Inc.Terms Privacy Security Status Help
