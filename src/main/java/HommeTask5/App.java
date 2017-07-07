@@ -6,6 +6,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Hello world!
@@ -31,7 +32,7 @@ public class App {
         /*Task3*/
         ContragentId contragentId = new ContragentId(2, 852258);
 
-        Contragent contragent = new Contragent (contragentId.getId(),contragentId.getSiteid(),"deal deal","7656836883", category, contragenttype);
+        Contragent contragent = new Contragent (contragentId,"deal deal","7656836883", category, contragenttype);
 
         Account account = new Account(contragent, new Date(), "2400587456", new Date(), new BigDecimal("156.15"));
 
@@ -41,7 +42,8 @@ public class App {
         ContragentGroup contragentGroup2 = new ContragentGroup ( "Abebka");
 
         /*Task5*/
-        Address address2 = new Address("USA", "NY", "NHL", "SnowMan", "18", "145", "61058", contragent );
+       Address address2 = new Address("USA", "NY", "NHL", "SnowMan", "18", "145",
+               "61058", contragent);
 
 
         EntityManagerFactory emf1 = Persistence.createEntityManagerFactory("TEST");

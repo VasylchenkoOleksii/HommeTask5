@@ -10,22 +10,10 @@ import java.util.Date;
 @Entity
 @Table(name = "TMP_CATEGORY")
 public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "category_sequence")
-    @SequenceGenerator(name = "category_sequence",
-            sequenceName = "sequence_cat",
-            initialValue = 2,
-            allocationSize = 1)
-    @Column(name = "categoryid")
+
     private int id;
-
     private String name;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "TIME_CREATE", nullable = false)
     private Date synctimestamp;
-
-    @OneToOne(mappedBy = "category")
     private Contragent contragent;
 
     public Category() {
@@ -36,6 +24,13 @@ public class Category {
         this.synctimestamp = synctimestamp;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "category_sequence")
+    @SequenceGenerator(name = "category_sequence",
+            sequenceName = "sequence_cat",
+            initialValue = 2,
+            allocationSize = 1)
+    @Column(name = "categoryid")
     public int getId() {
         return id;
     }
@@ -52,6 +47,8 @@ public class Category {
         this.name = name;
     }
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "TIME_CREATE", nullable = false)
     public Date getSynctimestamp() {
         return synctimestamp;
     }
@@ -60,6 +57,7 @@ public class Category {
         this.synctimestamp = synctimestamp;
     }
 
+    @OneToOne(mappedBy = "category")
     public Contragent getContragent() {
         return contragent;
     }

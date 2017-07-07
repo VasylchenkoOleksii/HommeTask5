@@ -10,6 +10,19 @@ import java.util.List;
 @Table(name = "TMP_CONTRAGENTGROUP")
 public class ContragentGroup {
 
+
+    private int id;
+    private String name;
+    private List<Contragent> contragentList;
+
+    public ContragentGroup() {
+    }
+
+
+    public ContragentGroup(String name) {
+        this.name = name;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "crgroup_sequence")
     @SequenceGenerator(name = "crgroup_sequence",
@@ -17,19 +30,6 @@ public class ContragentGroup {
             initialValue = 2,
             allocationSize = 1)
     @Column(name = "crgroupid")
-    private int id;
-
-    private String name;
-
-    @ManyToMany
-    @JoinTable(name = "TMP_CR_CRGROUPLINK",
-            joinColumns = @JoinColumn(name = "GROUP_ID", referencedColumnName = "crgroupid"),
-            inverseJoinColumns = {@JoinColumn(name = "CRID", referencedColumnName = "ID"),
-                    @JoinColumn(name = "SITEID", referencedColumnName = "SITEID")
-            }
-    )
-    private List<Contragent> contragentList;
-
     public int getId() {
         return id;
     }
@@ -46,6 +46,12 @@ public class ContragentGroup {
         this.name = name;
     }
 
+    @ManyToMany
+    @JoinTable(name = "TMP_CR_CRGROUPLINK",
+            joinColumns = @JoinColumn(name = "GROUP_ID", referencedColumnName = "crgroupid"),
+            inverseJoinColumns = {@JoinColumn(name = "CRID", referencedColumnName = "ID"),
+                    @JoinColumn(name = "SITEID", referencedColumnName = "SITEID")
+            }  )
     public List<Contragent> getContragentList() {
         return contragentList;
     }
@@ -54,10 +60,4 @@ public class ContragentGroup {
         this.contragentList = contragentList;
     }
 
-    public ContragentGroup(String name) {
-        this.name = name;
-    }
-
-    public ContragentGroup() {
-    }
 }
