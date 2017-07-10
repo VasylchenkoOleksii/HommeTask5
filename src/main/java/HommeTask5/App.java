@@ -46,22 +46,22 @@ public class App {
                "61058", contragent);
 
 
-        EntityManagerFactory emf1 = Persistence.createEntityManagerFactory("TEST");
-        EntityManager em1 = emf1.createEntityManager();
-        EntityTransaction tx1 = em1.getTransaction();
-        tx1.begin();
-        em1.persist(contragenttype);
-        em1.persist(category);
-        em1.persist(address);
-        em1.persist(address2);
-        em1.persist(contragent);
-        em1.persist(account);
-        em1.persist(contragentGroup);
-        em1.persist(contragentGroup1);
-        em1.persist(contragentGroup2);
-        tx1.commit();
-        em1.close();
-        emf1.close();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("TEST");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(contragenttype);
+        em.persist(category);
+        em.persist(address);
+        em.persist(address2);
+        em.persist(contragent);
+        em.persist(account);
+        em.persist(contragentGroup);
+        em.persist(contragentGroup1);
+        em.persist(contragentGroup2);
+        tx.commit();
+        em.close();
+        emf.close();
 
     }
 }
